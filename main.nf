@@ -861,6 +861,7 @@ process mirdeep2 {
 process mirtrace {
     tag "$reads"
     publishDir "${params.outdir}/miRTrace", mode: 'copy'
+    label 'process_medium'
 
     input:
     file reads from raw_reads_mirtrace.collect()
@@ -886,6 +887,7 @@ process mirtrace {
         --config mirtrace_config \\
         --write-fasta \\
         --output-dir mirtrace \\
+        --global-mem-reserve 30000 \\
         --force
     """
 }

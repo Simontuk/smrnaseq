@@ -306,7 +306,7 @@ if (!params.references_parsed && !params.skip_mirdeep){
     file hairpin from reference_hairpin
 
     output:
-    file 'genome.fa' into fasta
+    file 'genome_clean.fa' into fasta
     file 'genome.*.ebwt' into indices_mirdeep2
     file 'hairpin.fa' into hairpin
     file 'mature.fa' into mature
@@ -326,14 +326,14 @@ if (!params.references_parsed && !params.skip_mirdeep){
     fi
 
     # Remove any special base characters from reference genome FASTA file
-    sed '/^[^>]/s/[^ATGCatgc]/N/g' $refgenome > genome.fa
+    sed '/^[^>]/s/[^ATGCatgc]/N/g' $refgenome > genome_clean.fa
 
     # Remove spaces from miRBase FASTA files
     sed -i 's, ,_,g' \$HAIRPIN
     sed -i 's, ,_,g' \$MATURE
 
     # Build bowtie index
-    bowtie-build genome.fa genome
+    bowtie-build genome_clean.fa genome
     """
   }
 }

@@ -887,7 +887,7 @@ process mirtrace {
         --config mirtrace_config \\
         --write-fasta \\
         --output-dir mirtrace \\
-        --global-mem-reserve 4000 \\
+        --global-mem-reserve 20000 \\
         --threads 8 \\
         --force
     """

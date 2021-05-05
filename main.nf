@@ -841,6 +841,7 @@ process mirdeep2 {
     script:
     """
     perl -ane 's/y/N/ig;print;' $hairpin > hairpin_yn.fa
+    sed -i 's/U/G/g' hairpin_yn.fa
     
     miRDeep2.pl \\
     $reads_collapsed \\
